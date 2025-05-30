@@ -3,32 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pixelware 2.0 – Kour.io Cheat</title>
+  <title>Pixelware 2.0 - Kour.io Cheat</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0f0f0f, #1f1f1f);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
-      text-align: center;
-      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: #f0f8ff;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      padding: 2rem;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
       font-size: 3em;
       margin-bottom: 0.2em;
+      text-shadow: 0 0 10px #3bcaff;
     }
 
     p {
       font-size: 1.2em;
-      max-width: 600px;
+      color: #cceeff;
+      max-width: 700px;
+      text-align: center;
       line-height: 1.6;
-      color: #ccc;
     }
 
     .button {
@@ -37,25 +42,88 @@
       font-size: 1.2em;
       font-weight: bold;
       color: white;
-      background: #ff4c4c;
+      background: #00aaff;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 0 20px rgba(255, 76, 76, 0.5);
+      box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
       transition: all 0.3s ease-in-out;
     }
 
     .button:hover {
-      background: #ff1c1c;
+      background: #008ecc;
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 50, 50, 0.8);
+    }
+
+    .info-button {
+      background: none;
+      border: 2px solid #00aaff;
+      color: #cceeff;
+      padding: 0.5em 1em;
+      margin-top: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .info-button:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 20, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .modal-content {
+      background-color: #102331;
+      padding: 2rem;
+      border-radius: 15px;
+      max-width: 600px;
+      color: #dff6ff;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-content h2 {
+      color: #00ccff;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 1.5em;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .cheat-image {
+      margin-top: 2em;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
     }
 
     .footer {
       margin-top: 3em;
       font-size: 0.8em;
-      color: #777;
+      color: #88aacc;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
     }
   </style>
 </head>
@@ -63,16 +131,43 @@
 
   <h1>Pixelware 2.0 Cheat</h1>
   <p>
-    This userscript enhances your experience in <strong>Kour.io</strong> with added features and functionality.
-    <br />
-    Works directly with <strong>Tampermonkey</strong> – just one click to install.
+    Unlock advanced features in <strong>Kour.io</strong> using this powerful userscript.<br />
+    Includes an in-game cheat menu and more.
   </p>
 
-  <a href="pixelware-cheat.user.js" class="button">Download Kour.io Cheat</a>
+  <a class="button" href="pixelware-cheat.user.js">Download Kour.io Cheat</a>
+  <button class="info-button" onclick="document.getElementById('modal').style.display='flex'">Instructions & Info</button>
+
+  <img src="https://i.imgur.com/yHhPbVW.png" alt="Cheat Menu Preview" class="cheat-image" />
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+      <h2>How to Use</h2>
+      <ol>
+        <li>Install the Tampermonkey browser extension (Chrome/Firefox)</li>
+        <li>Click the blue "Download Kour.io Cheat" button</li>
+        <li>Approve the userscript installation in Tampermonkey</li>
+        <li>Open <strong>Kour.io</strong> in your browser</li>
+        <li>Press <kbd>Right Shift</kbd> to open the cheat menu</li>
+        <li>Customize and dominate the game!</li>
+      </ol>
+    </div>
+  </div>
 
   <div class="footer">
-    ⚠️ For educational purposes only. Not affiliated with Kour.io.
+    ⚠️ For educational use only. Not affiliated with Kour.io. Use at your own risk.
   </div>
+
+  <script>
+    // Modal close logic
+    window.onclick = function(e) {
+      const modal = document.getElementById('modal');
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
 </body>
 </html>
