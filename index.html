@@ -6,19 +6,20 @@
   <title>Pixelware 2.0 - Your Kour.io Advantage</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> {/* Updated Font Awesome */}
   <style>
     :root {
       --primary-color: #00aaff;
       --primary-hover-color: #008ecc;
       --secondary-color: #08f;
       --accent-color: #ff4081;
+      --success-color: #4CAF50;
       --background-start: #0a192f;
       --background-end: #132d4f;
       --text-color: #e6f1ff;
       --text-muted-color: #a8b2d1;
-      --card-bg: rgba(20, 40, 60, 0.75);
-      --card-border: rgba(0, 170, 255, 0.3);
+      --card-bg: rgba(16, 32, 52, 0.8); /* Slightly darker, more opaque */
+      --card-border: rgba(0, 170, 255, 0.35);
       --shadow-color: rgba(0, 170, 255, 0.5);
       --feature-icon-color: var(--primary-color);
     }
@@ -29,6 +30,10 @@
       box-sizing: border-box;
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--background-start);
@@ -37,7 +42,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 2rem;
+      padding: 2rem 1rem; /* More horizontal padding for smaller screens */
       overflow-x: hidden;
       position: relative;
     }
@@ -54,42 +59,42 @@
 
     .page-wrapper {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse; /* Features on top on mobile by default */
         align-items: center;
         width: 100%;
-        gap: 2rem;
+        gap: 1.5rem; /* Reduced gap */
         z-index: 1;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1100px) { /* Adjusted breakpoint for 2-column features + main */
         .page-wrapper {
             flex-direction: row;
             align-items: flex-start;
             justify-content: center;
-            max-width: 1300px;
+            max-width: 1400px; /* Increased max-width */
         }
     }
 
-    /* Features Sidebar (now on the left for desktop) */
+    /* Features Sidebar */
     .features-sidebar {
         background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--card-border);
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 15px var(--shadow-color);
+        padding: 1.5rem; /* Reduced padding */
+        border-radius: 15px; /* Slightly smaller radius */
+        box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.3), 0 0 12px var(--shadow-color);
         width: 100%;
-        max-width: 700px; 
+        max-width: 600px; /* Max width for mobile */
         animation: fadeInLeft 0.8s 0.2s ease-out forwards;
         opacity: 0;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1100px) {
         .features-sidebar {
-            order: 1; /* Explicitly first */
-            width: 30%; /* Made smaller */
-            max-width: 380px; /* Max width for sidebar */
+            order: 1; 
+            width: 40%; /* Adjusted width for two columns */
+            max-width: 550px; /* Max width for sidebar */
             align-self: stretch; 
             position: sticky; 
             top: 2rem;      
@@ -101,87 +106,90 @@
     }
 
     .features-sidebar h2 {
-        font-size: 1.8em; /* Adjusted for smaller sidebar */
+        font-size: 1.6em; /* Further reduced */
         color: var(--primary-color);
-        margin-bottom: 1.5em;
+        margin-bottom: 1.2em;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5em;
+        gap: 0.4em;
     }
-    .features-sidebar h2 .fa-star {
-        color: var(--accent-color);
+    .features-sidebar h2 .fa-star { color: var(--accent-color); }
+
+    .features-grid-container {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column by default for mobile */
+        gap: 0.8em; /* Gap between columns/rows */
     }
 
-    .features-list {
+    @media (min-width: 480px) { /* Two columns for features from this breakpoint */
+        .features-grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    }
+     @media (min-width: 1100px) { /* Enforce 2 columns for wider sidebar */
+        .features-grid-container {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+
+    .features-column {
         list-style: none;
         padding: 0;
     }
 
-    .features-list li {
+    .features-column li {
         display: flex;
-        align-items: center; 
-        margin-bottom: 1em; /* Slightly reduced margin */
-        padding: 0.7em; /* Slightly reduced padding */
-        background-color: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-        border-left: 3px solid var(--feature-icon-color); /* Thinner border */
-        transition: transform 0.3s ease, background-color 0.3s ease;
-        font-size: 0.95em; /* Adjusted for smaller sidebar */
+        align-items: flex-start; /* Align icon with top of text block */
+        margin-bottom: 0.8em; 
+        padding: 0.6em; 
+        background-color: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+        border-left: 2px solid var(--feature-icon-color); 
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        font-size: 0.85em; /* Further reduced */
     }
     
-    .features-list li:hover {
-        transform: translateX(5px);
-        background-color: rgba(255, 255, 255, 0.07);
+    .features-column li:hover {
+        transform: translateX(4px);
+        background-color: rgba(255, 255, 255, 0.05);
     }
 
-    .features-list li i {
+    .features-column li i {
         color: var(--feature-icon-color);
-        font-size: 1.2em; /* Adjusted icon size */
-        margin-right: 0.8em; /* Adjusted margin */
-        width: 25px; 
+        font-size: 1.1em; 
+        margin-right: 0.7em; 
+        width: 20px; 
         text-align: center;
         flex-shrink: 0; 
+        margin-top: 0.1em; /* Fine-tune vertical alignment with text */
     }
     
-    .features-list li div { 
-        display: flex;
-        flex-direction: column;
-    }
+    .features-column li div { display: flex; flex-direction: column; }
+    .features-column li .feature-name { font-weight: 600; color: var(--text-color); line-height: 1.2; }
+    .features-column li .feature-description { font-size: 0.9em; color: var(--text-muted-color); display: block; margin-top: 0.15em; line-height: 1.3; }
 
-    .features-list li .feature-name {
-        font-weight: 600;
-        color: var(--text-color);
-        line-height: 1.3;
-    }
-    .features-list li .feature-description {
-        font-size: 0.85em;
-        color: var(--text-muted-color);
-        display: block; 
-        margin-top: 0.2em;
-        line-height: 1.4;
-    }
-
-    /* Main Content Area (now on the right for desktop) */
+    /* Main Content Area */
     .main-content-area {
       background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--card-border);
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px var(--shadow-color);
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.3), 0 0 12px var(--shadow-color);
       text-align: center;
       width: 100%;
       max-width: 700px;
       animation: fadeInScaleUp 0.8s ease-out forwards;
     }
     
-    @media (min-width: 1024px) {
+    @media (min-width: 1100px) {
         .main-content-area {
-            order: 2; /* Explicitly second */
-            width: 65%; /* Adjusted width */
+            order: 2; 
+            width: 58%; /* Adjusted width */
             max-width: none;
         }
     }
@@ -191,70 +199,89 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+    .page-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75em;
+        color: var(--text-muted-color);
+        margin-bottom: 1.5em;
+        padding: 0.5em 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .page-meta a {
+        color: var(--primary-color);
+        text-decoration: none;
+        margin-left: 0.5em;
+    }
+    .page-meta a:hover { text-decoration: underline;}
+
+
     header h1 {
       font-family: 'Press Start 2P', cursive;
-      font-size: 2.5em; 
+      font-size: 2.2em; /* Adjusted for balance */
       font-weight: normal; 
       margin-bottom: 0.5em; 
       background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 8px rgba(0, 170, 255, 0.4); /* Softer shadow for sharpness */
-      line-height: 1.3; 
+      text-shadow: 0 0 6px rgba(0, 170, 255, 0.3); 
+      line-height: 1.3;
+      image-rendering: pixelated; /* Hint for browser */
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      font-synthesis: none; /* Prevent browser from faking bold/italic */
+      -webkit-font-smoothing: none; /* Try to disable anti-aliasing */
+      -moz-osx-font-smoothing: unset; /* Try to disable anti-aliasing */
     }
 
     header h1 .wave-char {
       display: inline-block;
       position: relative; 
       animation-name: wave-animation;
-      animation-duration: 2s;
+      animation-duration: 1.8s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in-out;
-      /* Fix for blurry transformed pixel text */
-      will-change: transform;
-      backface-visibility: hidden; 
-      -webkit-font-smoothing: antialiased; /* For Webkit browsers */
-      -moz-osx-font-smoothing: grayscale; /* For Firefox */
+      will-change: transform; /* Keep this */
+      /* Using translate3d to force hardware acceleration more explicitly */
     }
     
     header h1 .wave-char:nth-child(1)  { animation-delay: 0.0s; }
-    header h1 .wave-char:nth-child(2)  { animation-delay: 0.1s; }
-    header h1 .wave-char:nth-child(3)  { animation-delay: 0.2s; }
-    header h1 .wave-char:nth-child(4)  { animation-delay: 0.3s; }
-    header h1 .wave-char:nth-child(5)  { animation-delay: 0.4s; }
-    header h1 .wave-char:nth-child(6)  { animation-delay: 0.5s; }
-    header h1 .wave-char:nth-child(7)  { animation-delay: 0.6s; }
-    header h1 .wave-char:nth-child(8)  { animation-delay: 0.7s; }
+    header h1 .wave-char:nth-child(2)  { animation-delay: 0.08s; } /* Fine-tuned delays */
+    header h1 .wave-char:nth-child(3)  { animation-delay: 0.16s; }
+    header h1 .wave-char:nth-child(4)  { animation-delay: 0.24s; }
+    header h1 .wave-char:nth-child(5)  { animation-delay: 0.32s; }
+    header h1 .wave-char:nth-child(6)  { animation-delay: 0.40s; }
+    header h1 .wave-char:nth-child(7)  { animation-delay: 0.48s; }
+    header h1 .wave-char:nth-child(8)  { animation-delay: 0.56s; }
     header h1 .wave-char.space       { animation: none; display: inline; }
-    header h1 .wave-char:nth-child(10) { animation-delay: 0.9s; } 
-    header h1 .wave-char:nth-child(11) { animation-delay: 1.0s; } 
-    header h1 .wave-char:nth-child(12) { animation-delay: 1.1s; } 
+    header h1 .wave-char:nth-child(10) { animation-delay: 0.72s; } 
+    header h1 .wave-char:nth-child(11) { animation-delay: 0.80s; } 
+    header h1 .wave-char:nth-child(12) { animation-delay: 0.88s; } 
 
-
-    @keyframes wave-animation {
-      0%, 100% { transform: translateY(0px); } /* Use integer values for transforms */
-      50% { transform: translateY(-6px); } 
+    @keyframes wave-animation { /* Integer pixel values are crucial */
+      0%, 100% { transform: translate3d(0, 0px, 0); }
+      50% { transform: translate3d(0, -4px, 0); } /* Reduced amplitude */
     }
 
-
     header p {
-      font-size: 1.1em; 
+      font-size: 1.05em; 
       color: var(--text-muted-color);
-      margin-bottom: 2em;
-      line-height: 1.7;
+      margin-bottom: 1.8em;
+      line-height: 1.6;
     }
 
     .actions {
-      margin-bottom: 2.5em;
+      margin-bottom: 2em;
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
+      flex-wrap: wrap; /* Allow buttons to wrap */
+      gap: 0.8rem;
+      justify-content: center; /* Center buttons when wrapped */
     }
 
     .button {
-      padding: 0.9em 2.2em;
-      font-size: 1.1em;
+      padding: 0.8em 1.8em;
+      font-size: 1em; /* Slightly smaller base size */
       font-weight: 600;
       color: white;
       background: var(--primary-color);
@@ -262,310 +289,188 @@
       border-radius: 50px; 
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 0 20px var(--shadow-color);
-      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0 15px var(--shadow-color);
+      transition: all 0.25s ease-in-out;
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
     }
-
     .button:hover {
       background: var(--primary-hover-color);
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 0 30px var(--shadow-color), 0 4px 15px rgba(0,0,0,0.2);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 25px var(--shadow-color), 0 3px 12px rgba(0,0,0,0.15);
     }
-
     .button.secondary {
       background: transparent;
       border: 2px solid var(--primary-color);
       color: var(--primary-color);
       box-shadow: none;
     }
-
     .button.secondary:hover {
       background: var(--primary-color);
       color: white;
-      box-shadow: 0 0 20px var(--shadow-color);
+      box-shadow: 0 0 15px var(--shadow-color);
+    }
+    .button.utility { /* For copy button etc. */
+        background-color: rgba(255,255,255,0.1);
+        color: var(--text-muted-color);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: none;
+    }
+    .button.utility:hover {
+        background-color: rgba(255,255,255,0.2);
+        color: var(--text-color);
+    }
+    .button.copied {
+        background-color: var(--success-color) !important;
+        color: white !important;
+        border-color: var(--success-color) !important;
     }
 
+
     .cheat-image-container {
-      margin-bottom: 2.5em;
+      margin-bottom: 2em;
       animation: fadeInImage 1.2s 0.3s ease-out forwards;
       opacity: 0;
     }
-    
     @keyframes fadeInImage {
         from { opacity: 0; transform: scale(0.9); }
         to   { opacity: 1; transform: scale(1); }
     }
-
     .cheat-image {
       max-width: 100%;
       height: auto;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 25px var(--shadow-color);
-      border: 2px solid var(--card-border);
-    }
-
-    .modal {
-      display: none; 
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 10, 20, 0.8);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    .modal.show {
-      display: flex;
-      opacity: 1;
-    }
-
-    .modal-content {
-      background: var(--card-bg);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      padding: 2.5rem;
-      border-radius: 15px;
-      max-width: 650px;
-      width: 90%;
-      color: var(--text-color);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px var(--shadow-color);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 20px var(--shadow-color);
       border: 1px solid var(--card-border);
-      position: relative;
-      transform: scale(0.95);
-      transition: transform 0.3s ease-out;
-    }
-    
-    .modal.show .modal-content {
-        transform: scale(1);
     }
 
-    .modal-content h2 {
-      color: var(--primary-color);
-      margin-bottom: 1em;
-      text-align: left;
-      font-size: 1.8em;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 2em;
-      color: var(--text-muted-color);
-      cursor: pointer;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .close-btn:hover {
-      color: var(--primary-color);
-      transform: rotate(90deg);
-    }
-
-    .modal-content ol {
-      list-style: none;
-      padding-left: 0;
-      text-align: left;
-    }
-
-    .modal-content ol li {
-      margin-bottom: 0.8em;
-      font-size: 1.05em;
-      line-height: 1.6;
-      color: var(--text-muted-color);
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .modal-content ol li i {
-        color: var(--primary-color);
-        margin-right: 0.7em;
-        margin-top: 0.2em; 
-        font-size: 0.9em;
-    }
-
-    .modal-content kbd {
-      background-color: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 0.2em 0.5em;
-      border-radius: 4px;
-      font-family: 'Consolas', 'Menlo', monospace;
-      font-size: 0.9em;
-      color: var(--text-color);
-    }
+    /* Modal (no major changes) */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 10, 20, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease-in-out; }
+    .modal.show { display: flex; opacity: 1; }
+    .modal-content { background: var(--card-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 2rem 2.5rem; border-radius: 15px; max-width: 650px; width: 90%; color: var(--text-color); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px var(--shadow-color); border: 1px solid var(--card-border); position: relative; transform: scale(0.95); transition: transform 0.3s ease-out; }
+    .modal.show .modal-content { transform: scale(1); }
+    .modal-content h2 { color: var(--primary-color); margin-bottom: 1em; text-align: left; font-size: 1.8em; }
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2em; color: var(--text-muted-color); cursor: pointer; transition: color 0.3s ease, transform 0.3s ease; }
+    .close-btn:hover { color: var(--primary-color); transform: rotate(90deg); }
+    .modal-content ol { list-style: none; padding-left: 0; text-align: left; }
+    .modal-content ol li { margin-bottom: 0.8em; font-size: 1.05em; line-height: 1.6; color: var(--text-muted-color); display: flex; align-items: flex-start; }
+    .modal-content ol li i { color: var(--primary-color); margin-right: 0.7em; margin-top: 0.2em;  font-size: 0.9em; }
+    .modal-content kbd { background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 0.2em 0.5em; border-radius: 4px; font-family: 'Consolas', 'Menlo', monospace; font-size: 0.9em; color: var(--text-color); }
 
     .footer {
-      margin-top: 3em;
-      font-size: 0.9em;
+      margin-top: 2.5em;
+      font-size: 0.85em;
       color: var(--text-muted-color);
       text-align: center;
       z-index: 1; 
       width: 100%;
       animation: fadeInUpFooter 1s 0.6s ease-out forwards;
       opacity: 0;
+      padding: 1em 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    @keyframes fadeInUpFooter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .footer p { margin-bottom: 0.5em; }
+    .footer a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; }
+    .footer a:hover { color: var(--primary-hover-color); text-decoration: underline; }
+    .footer .social-links a { margin: 0 0.5em; font-size: 1.2em; }
+
+    #scrollToTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        border: none;
+        outline: none;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        padding: 12px 15px;
+        border-radius: 50%;
+        font-size: 1.1em;
+        box-shadow: 0 4px 10px rgba(0,170,255,0.4);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    #scrollToTopBtn:hover {
+        background-color: var(--primary-hover-color);
+        transform: translateY(-3px);
     }
 
-    @keyframes fadeInUpFooter {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .footer a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    .footer a:hover {
-        color: var(--primary-hover-color);
-        text-decoration: underline;
-    }
 
-    @media (max-width: 1023px) { 
-        .page-wrapper {
-            flex-direction: column-reverse; /* Stack features on top on mobile */
-        }
+    /* Responsive adjustments */
+    @media (max-width: 1099px) { /* Before full desktop layout */
+        .page-wrapper { flex-direction: column-reverse; } /* Ensure features are on top */
         .main-content-area, .features-sidebar {
             max-width: 700px; 
-            width: 90%; 
-            order: 0; /* Reset order for stacking */
+            width: 95%; /* Use more width */
+            order: 0; 
         }
-        .features-sidebar {
-            position: static; /* Remove sticky for stacked layout */
-            margin-bottom: 2rem; /* Add space when stacked */
-        }
+        .features-sidebar { position: static; margin-bottom: 1.5rem; }
         header h1 { font-size: 2em; } 
     }
-
     @media (max-width: 768px) {
       header h1 { font-size: 1.8em; } 
       header p { font-size: 1em; }
-      .button { font-size: 1em; padding: 0.8em 1.8em;}
-      .modal-content { padding: 2rem; }
-      .modal-content h2 { font-size: 1.6em; }
-      .features-sidebar h2 { font-size: 1.8em; }
-      .features-list li { font-size: 0.95em; }
+      .button { font-size: 0.95em; padding: 0.7em 1.5em;}
+      .modal-content { padding: 1.5rem 2rem; }
+      .features-sidebar h2 { font-size: 1.5em; }
+      .features-column li { font-size: 0.8em; }
+      .page-meta { flex-direction: column; gap: 0.5em; text-align: center; }
     }
     @media (max-width: 480px) {
-      .main-content-area, .features-sidebar { padding: 1.5rem; }
-      header h1 { font-size: 1.5em; } 
-      .actions { flex-direction: column; gap: 0.8rem; }
+      body { padding: 1.5rem 0.5rem; }
+      .main-content-area, .features-sidebar { padding: 1.2rem; width: 100%; }
+      header h1 { font-size: 1.6em; } 
+      .actions { flex-direction: column; gap: 0.6rem; }
       .button { width: 100%; justify-content: center; }
+      .features-grid-container { grid-template-columns: 1fr; } /* Force single column for very small */
     }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
+  <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
   <div class="page-wrapper">
-    <!-- Features Sidebar (now comes first in HTML for left alignment on desktop) -->
     <aside class="features-sidebar">
         <h2><i class="fas fa-star"></i> Pixelware Features <i class="fas fa-star"></i></h2>
-        <ul class="features-list">
-          <li>
-            <i class="fas fa-ghost"></i>
-            <div>
-              <span class="feature-name">Invisibility</span>
-              <span class="feature-description">Become completely unseen by other players.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-bolt-lightning"></i>
-            <div>
-              <span class="feature-name">Instakill</span>
-              <span class="feature-description">Eliminate opponents instantly with a single hit.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-eye"></i>
-            <div>
-              <span class="feature-name">ESP (P Key)</span>
-              <span class="feature-description">See players through obstacles. (Activates with 'P' key).</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-gauge-high"></i>
-            <div>
-              <span class="feature-name">Adjustable Speed</span>
-              <span class="feature-description">Modify your movement speed with a configurable multiplier.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-crown"></i>
-            <div>
-              <span class="feature-name">Max Account</span>
-              <span class="feature-description">Instantly unlock all items and maximize your account.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-arrow-trend-up"></i>
-            <div>
-              <span class="feature-name">Level 1000 Hack (XP)</span>
-              <span class="feature-description">Boost your account to Level 1000 and gain maximum XP.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-coins"></i>
-            <div>
-              <span class="feature-name">KP Generator</span>
-              <span class="feature-description">Enable Kour Point (KP) generation to accumulate currency.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-user-pen"></i>
-            <div>
-              <span class="feature-name">Set Class Kills</span>
-              <span class="feature-description">Customize and set the number of kills for specific classes.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-chart-line"></i>
-            <div>
-              <span class="feature-name">Change Stats</span>
-              <span class="feature-description">Modify your player statistics, such as K/D ratio and wins.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-tools"></i> 
-            <div>
-              <span class="feature-name">Set Secondary Weapon</span>
-              <span class="feature-description">Configure your secondary firearm in the lobby.</span>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-wrench"></i> 
-            <div>
-              <span class="feature-name">Set Melee Weapon</span>
-              <span class="feature-description">Select and equip your preferred melee weapon before matches.</span>
-            </div>
-          </li>
-        </ul>
-      </aside>
+        <div class="features-grid-container">
+            <ul class="features-column" id="features-col-1">
+              {/* <!-- First 6 features will be populated by JS --> */}
+            </ul>
+            <ul class="features-column" id="features-col-2">
+              {/* <!-- Remaining features will be populated by JS --> */}
+            </ul>
+        </div>
+    </aside>
 
     <div class="main-content-area">
+      <div class="page-meta">
+          <span>Version: 2.0.1</span>
+          <span>Last Updated: <span id="lastUpdated"></span></span>
+      </div>
       <header>
         <h1>
           <span class="wave-char">P</span><span class="wave-char">i</span><span class="wave-char">x</span><span class="wave-char">e</span><span class="wave-char">l</span><span class="wave-char">w</span><span class="wave-char">a</span><span class="wave-char">r</span><span class="wave-char">e</span><span class="wave-char space"> </span><span class="wave-char">2</span><span class="wave-char">.</span><span class="wave-char">0</span>
         </h1>
         <p>
-          Unleash the full potential in <strong>Kour.io</strong> with this powerful userscript.<br />
-          Includes an In-Game Cheat Menu with a wide array of game-changing features!
+          Unleash the full potential in <a href="https://kour.io" target="_blank" rel="noopener noreferrer"><strong>Kour.io</strong></a> with this powerful userscript.<br />
+          In-Game Menu with a vast array of game-changing features!
         </p>
       </header>
 
       <main>
         <div class="actions">
-          <a class="button" id="downloadButton" href="pixelware-cheat.user.js">
-            <i class="fas fa-download"></i> Download Kour.io Cheat
+          <a class="button" id="downloadButton" href="pixelware-cheat.user.js" download>
+            <i class="fas fa-download"></i> Download Cheat
           </a>
           <button class="button secondary" id="infoButton">
-            <i class="fas fa-info-circle"></i> Instructions & Info
+            <i class="fas fa-info-circle"></i> Instructions
+          </button>
+          <button class="button utility" id="copyLinkButton">
+            <i class="fas fa-copy"></i> Copy DL Link
           </button>
         </div>
 
@@ -574,7 +479,6 @@
         </div>
       </main>
     </div>
-
   </div>
 
   <div class="modal" id="infoModal">
@@ -582,12 +486,12 @@
       <span class="close-btn" id="closeModalBtn">×</span>
       <h2><i class="fas fa-cogs"></i> How to Use</h2>
       <ol>
-        <li><i class="fas fa-puzzle-piece"></i> Install the <a href="https://www.tampermonkey.net/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration:none;">Tampermonkey</a> browser extension (Chrome/Firefox/Edge).</li>
-        <li><i class="fas fa-mouse-pointer"></i> Click the "Download Kour.io Cheat" button.</li>
-        <li><i class="fas fa-check-circle"></i> Approve the userscript installation in Tampermonkey.</li>
-        <li><i class="fas fa-gamepad"></i> Open <strong>Kour.io</strong> in your browser.</li>
-        <li><i class="fas fa-keyboard"></i> Press <kbd>Right Shift</kbd> to open the cheat menu.</li>
-        <li><i class="fas fa-rocket"></i> Customize settings and dominate the game!</li>
+        <li><i class="fas fa-puzzle-piece"></i> Install <a href="https://www.tampermonkey.net/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration:none;">Tampermonkey</a> (Chrome/Firefox/Edge).</li>
+        <li><i class="fas fa-mouse-pointer"></i> Click "Download Cheat" or copy the link.</li>
+        <li><i class="fas fa-check-circle"></i> Approve userscript installation in Tampermonkey.</li>
+        <li><i class="fas fa-gamepad"></i> Open <a href="https://kour.io" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration:none;"><strong>Kour.io</strong></a>.</li>
+        <li><i class="fas fa-keyboard"></i> Press <kbd>Right Shift</kbd> for the cheat menu.</li>
+        <li><i class="fas fa-rocket"></i> Customize and dominate!</li>
       </ol>
     </div>
   </div>
@@ -597,54 +501,113 @@
       ⚠️ For educational purposes only. Not affiliated with Kour.io. Use at your own risk.<br />
       Made by Partypixelparty7. Page design by AI & Human.
     </p>
+    <div class="social-links">
+        <a href="#" target="_blank" rel="noopener noreferrer" title="Discord Community (Placeholder)"><i class="fab fa-discord"></i></a>
+        <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank" rel="noopener noreferrer" title="GitHub Repository (Placeholder)"><i class="fab fa-github"></i></a>
+    </div>
   </footer>
 
-  <!-- Particles.js CDN -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Particles.js Configuration
+    // --- Feature List Population ---
+    const allFeatures = [
+        { icon: "fas fa-ghost", name: "Invisibility", desc: "Become completely unseen by other players." },
+        { icon: "fas fa-bolt-lightning", name: "Instakill", desc: "Eliminate opponents instantly with a single hit." },
+        { icon: "fas fa-eye", name: "ESP (P Key)", desc: "See players through obstacles. (Activates with 'P' key)." },
+        { icon: "fas fa-gauge-high", name: "Adjustable Speed", desc: "Modify your movement speed with a multiplier." },
+        { icon: "fas fa-crown", name: "Max Account", desc: "Instantly unlock all items and maximize your account." },
+        { icon: "fas fa-arrow-trend-up", name: "Level 1000 Hack (XP)", desc: "Boost your account to Level 1000 and gain max XP." },
+        { icon: "fas fa-coins", name: "KP Generator", desc: "Enable Kour Point (KP) generation." },
+        { icon: "fas fa-user-pen", name: "Set Class Kills", desc: "Customize kills for specific classes." },
+        { icon: "fas fa-chart-line", name: "Change Stats", desc: "Modify player statistics like K/D ratio." },
+        { icon: "fas fa-tools", name: "Set Secondary Weapon", desc: "Configure secondary firearm in lobby." },
+        { icon: "fas fa-wrench", name: "Set Melee Weapon", desc: "Select preferred melee weapon." }
+    ];
+
+    function populateFeatures() {
+        const col1 = document.getElementById('features-col-1');
+        const col2 = document.getElementById('features-col-2');
+        col1.innerHTML = ''; // Clear existing
+        col2.innerHTML = '';
+
+        allFeatures.forEach((feature, index) => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <i class="${feature.icon}"></i>
+                <div>
+                    <span class="feature-name">${feature.name}</span>
+                    <span class="feature-description">${feature.desc}</span>
+                </div>
+            `;
+            if (index < 6) { // First 6 features in column 1
+                col1.appendChild(listItem);
+            } else {
+                col2.appendChild(listItem);
+            }
+        });
+    }
+    populateFeatures();
+
+    // --- Particles.js Configuration ---
     particlesJS("particles-js", {
       "particles": {
-        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, // Slightly reduced particle count
-        "color": { "value": "#00aaff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 0.8, "opacity_min": 0.1, "sync": false } },
-        "size": { "value": 2.5, "random": true },
-        "line_linked": { "enable": true, "distance": 150, "color": "#00aaff", "opacity": 0.3, "width": 1 },
-        "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+        "number": { "value": 50, "density": { "enable": true, "value_area": 900 } },
+        "color": { "value": "#00aaff" }, "shape": { "type": "circle" },
+        "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.7, "opacity_min": 0.1, "sync": false } },
+        "size": { "value": 2.2, "random": true },
+        "line_linked": { "enable": true, "distance": 140, "color": "#00aaff", "opacity": 0.25, "width": 1 },
+        "move": { "enable": true, "speed": 1.8, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
       },
       "interactivity": {
-        "detect_on": "canvas",
-        "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-        "modes": { "grab": { "distance": 120, "line_linked": { "opacity": 0.8 } }, "push": { "particles_nb": 3 } }
-      },
-      "retina_detect": true
+        "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+        "modes": { "grab": { "distance": 110, "line_linked": { "opacity": 0.7 } }, "push": { "particles_nb": 2 } }
+      }, "retina_detect": true
     });
 
-    // Modal Logic
+    // --- Modal Logic ---
     const modal = document.getElementById('infoModal');
     const openModalBtn = document.getElementById('infoButton');
     const closeModalBtn = document.getElementById('closeModalBtn');
+    openModalBtn.onclick = () => modal.classList.add('show');
+    closeModalBtn.onclick = () => modal.classList.remove('show');
+    window.onclick = (event) => { if (event.target === modal) modal.classList.remove('show'); };
+    document.addEventListener('keydown', (event) => { if (event.key === "Escape" && modal.classList.contains('show')) modal.classList.remove('show'); });
 
-    openModalBtn.onclick = function() {
-      modal.classList.add('show');
-    }
+    // --- Copy Download Link ---
+    const copyLinkButton = document.getElementById('copyLinkButton');
+    const downloadButton = document.getElementById('downloadButton');
+    copyLinkButton.onclick = () => {
+        const downloadUrl = downloadButton.href;
+        navigator.clipboard.writeText(downloadUrl).then(() => {
+            const originalText = copyLinkButton.innerHTML;
+            copyLinkButton.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            copyLinkButton.classList.add('copied');
+            setTimeout(() => {
+                copyLinkButton.innerHTML = originalText;
+                copyLinkButton.classList.remove('copied');
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert('Failed to copy link. Please try manually.');
+        });
+    };
 
-    closeModalBtn.onclick = function() {
-      modal.classList.remove('show');
-    }
+    // --- Last Updated Date ---
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    window.onclick = function(event) {
-      if (event.target === modal) {
-        modal.classList.remove('show');
-      }
-    }
-    
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape" && modal.classList.contains('show')) {
-            modal.classList.remove('show');
+    // --- Scroll to Top Button ---
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
         }
-    });
+    };
+    scrollToTopBtn.onclick = function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+
   </script>
 </body>
 </html>
