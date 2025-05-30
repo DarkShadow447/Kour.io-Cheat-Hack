@@ -6,7 +6,7 @@
   <title>Pixelware 2.0 - Your Kour.io Advantage</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> {/* Updated Font Awesome */}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
       --primary-color: #00aaff;
@@ -18,7 +18,7 @@
       --background-end: #132d4f;
       --text-color: #e6f1ff;
       --text-muted-color: #a8b2d1;
-      --card-bg: rgba(16, 32, 52, 0.8); /* Slightly darker, more opaque */
+      --card-bg: rgba(16, 32, 52, 0.8);
       --card-border: rgba(0, 170, 255, 0.35);
       --shadow-color: rgba(0, 170, 255, 0.5);
       --feature-icon-color: var(--primary-color);
@@ -42,7 +42,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 2rem 1rem; /* More horizontal padding for smaller screens */
+      padding: 2rem 1rem;
       overflow-x: hidden;
       position: relative;
     }
@@ -59,33 +59,32 @@
 
     .page-wrapper {
         display: flex;
-        flex-direction: column-reverse; /* Features on top on mobile by default */
+        flex-direction: column-reverse;
         align-items: center;
         width: 100%;
-        gap: 1.5rem; /* Reduced gap */
+        gap: 1.5rem;
         z-index: 1;
     }
 
-    @media (min-width: 1100px) { /* Adjusted breakpoint for 2-column features + main */
+    @media (min-width: 1100px) {
         .page-wrapper {
             flex-direction: row;
             align-items: flex-start;
             justify-content: center;
-            max-width: 1400px; /* Increased max-width */
+            max-width: 1400px;
         }
     }
 
-    /* Features Sidebar */
     .features-sidebar {
         background: var(--card-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--card-border);
-        padding: 1.5rem; /* Reduced padding */
-        border-radius: 15px; /* Slightly smaller radius */
+        padding: 1.5rem;
+        border-radius: 15px;
         box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.3), 0 0 12px var(--shadow-color);
         width: 100%;
-        max-width: 600px; /* Max width for mobile */
+        max-width: 600px;
         animation: fadeInLeft 0.8s 0.2s ease-out forwards;
         opacity: 0;
     }
@@ -93,8 +92,8 @@
     @media (min-width: 1100px) {
         .features-sidebar {
             order: 1; 
-            width: 40%; /* Adjusted width for two columns */
-            max-width: 550px; /* Max width for sidebar */
+            width: 40%;
+            max-width: 550px;
             align-self: stretch; 
             position: sticky; 
             top: 2rem;      
@@ -106,7 +105,7 @@
     }
 
     .features-sidebar h2 {
-        font-size: 1.6em; /* Further reduced */
+        font-size: 1.6em;
         color: var(--primary-color);
         margin-bottom: 1.2em;
         text-align: center;
@@ -119,59 +118,29 @@
 
     .features-grid-container {
         display: grid;
-        grid-template-columns: 1fr; /* Single column by default for mobile */
-        gap: 0.8em; /* Gap between columns/rows */
+        grid-template-columns: 1fr;
+        gap: 0.8em;
     }
 
-    @media (min-width: 480px) { /* Two columns for features from this breakpoint */
+    @media (min-width: 480px) {
         .features-grid-container {
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
     }
-     @media (min-width: 1100px) { /* Enforce 2 columns for wider sidebar */
+     @media (min-width: 1100px) {
         .features-grid-container {
             grid-template-columns: 1fr 1fr;
         }
     }
 
-
-    .features-column {
-        list-style: none;
-        padding: 0;
-    }
-
-    .features-column li {
-        display: flex;
-        align-items: flex-start; /* Align icon with top of text block */
-        margin-bottom: 0.8em; 
-        padding: 0.6em; 
-        background-color: rgba(255, 255, 255, 0.02);
-        border-radius: 8px;
-        border-left: 2px solid var(--feature-icon-color); 
-        transition: transform 0.2s ease, background-color 0.2s ease;
-        font-size: 0.85em; /* Further reduced */
-    }
-    
-    .features-column li:hover {
-        transform: translateX(4px);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .features-column li i {
-        color: var(--feature-icon-color);
-        font-size: 1.1em; 
-        margin-right: 0.7em; 
-        width: 20px; 
-        text-align: center;
-        flex-shrink: 0; 
-        margin-top: 0.1em; /* Fine-tune vertical alignment with text */
-    }
-    
+    .features-column { list-style: none; padding: 0; }
+    .features-column li { display: flex; align-items: flex-start; margin-bottom: 0.8em; padding: 0.6em; background-color: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 2px solid var(--feature-icon-color); transition: transform 0.2s ease, background-color 0.2s ease; font-size: 0.85em; }
+    .features-column li:hover { transform: translateX(4px); background-color: rgba(255, 255, 255, 0.05); }
+    .features-column li i { color: var(--feature-icon-color); font-size: 1.1em; margin-right: 0.7em; width: 20px; text-align: center; flex-shrink: 0; margin-top: 0.1em; }
     .features-column li div { display: flex; flex-direction: column; }
     .features-column li .feature-name { font-weight: 600; color: var(--text-color); line-height: 1.2; }
     .features-column li .feature-description { font-size: 0.9em; color: var(--text-muted-color); display: block; margin-top: 0.15em; line-height: 1.3; }
 
-    /* Main Content Area */
     .main-content-area {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -187,39 +156,17 @@
     }
     
     @media (min-width: 1100px) {
-        .main-content-area {
-            order: 2; 
-            width: 58%; /* Adjusted width */
-            max-width: none;
-        }
+        .main-content-area { order: 2; width: 58%; max-width: none; }
     }
+    @keyframes fadeInScaleUp { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-    @keyframes fadeInScaleUp {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .page-meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.75em;
-        color: var(--text-muted-color);
-        margin-bottom: 1.5em;
-        padding: 0.5em 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .page-meta a {
-        color: var(--primary-color);
-        text-decoration: none;
-        margin-left: 0.5em;
-    }
+    .page-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.75em; color: var(--text-muted-color); margin-bottom: 1.5em; padding: 0.5em 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .page-meta a { color: var(--primary-color); text-decoration: none; margin-left: 0.5em; }
     .page-meta a:hover { text-decoration: underline;}
-
 
     header h1 {
       font-family: 'Press Start 2P', cursive;
-      font-size: 2.2em; /* Adjusted for balance */
+      font-size: 2.2em;
       font-weight: normal; 
       margin-bottom: 0.5em; 
       background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -227,125 +174,35 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 6px rgba(0, 170, 255, 0.3); 
       line-height: 1.3;
-      image-rendering: pixelated; /* Hint for browser */
+      image-rendering: pixelated;
       image-rendering: -moz-crisp-edges;
       image-rendering: crisp-edges;
-      font-synthesis: none; /* Prevent browser from faking bold/italic */
-      -webkit-font-smoothing: none; /* Try to disable anti-aliasing */
-      -moz-osx-font-smoothing: unset; /* Try to disable anti-aliasing */
+      font-synthesis: none;
+      -webkit-font-smoothing: none;
+      -moz-osx-font-smoothing: unset;
     }
 
-    header h1 .wave-char {
-      display: inline-block;
-      position: relative; 
-      animation-name: wave-animation;
-      animation-duration: 1.8s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-      will-change: transform; /* Keep this */
-      /* Using translate3d to force hardware acceleration more explicitly */
-    }
-    
-    header h1 .wave-char:nth-child(1)  { animation-delay: 0.0s; }
-    header h1 .wave-char:nth-child(2)  { animation-delay: 0.08s; } /* Fine-tuned delays */
-    header h1 .wave-char:nth-child(3)  { animation-delay: 0.16s; }
-    header h1 .wave-char:nth-child(4)  { animation-delay: 0.24s; }
-    header h1 .wave-char:nth-child(5)  { animation-delay: 0.32s; }
-    header h1 .wave-char:nth-child(6)  { animation-delay: 0.40s; }
-    header h1 .wave-char:nth-child(7)  { animation-delay: 0.48s; }
-    header h1 .wave-char:nth-child(8)  { animation-delay: 0.56s; }
-    header h1 .wave-char.space       { animation: none; display: inline; }
-    header h1 .wave-char:nth-child(10) { animation-delay: 0.72s; } 
-    header h1 .wave-char:nth-child(11) { animation-delay: 0.80s; } 
-    header h1 .wave-char:nth-child(12) { animation-delay: 0.88s; } 
+    header p { font-size: 1.05em; color: var(--text-muted-color); margin-bottom: 1.8em; line-height: 1.6; }
 
-    @keyframes wave-animation { /* Integer pixel values are crucial */
-      0%, 100% { transform: translate3d(0, 0px, 0); }
-      50% { transform: translate3d(0, -4px, 0); } /* Reduced amplitude */
+    .actions { margin-bottom: 2em; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+    .button { padding: 0.8em 1.8em; font-size: 1em; font-weight: 600; color: white; background: var(--primary-color); border: none; border-radius: 50px; cursor: pointer; text-decoration: none; box-shadow: 0 0 15px var(--shadow-color); transition: all 0.25s ease-in-out; display: inline-flex; align-items: center; gap: 0.5em; }
+    .button:hover { background: var(--primary-hover-color); transform: translateY(-2px) scale(1.02); box-shadow: 0 0 25px var(--shadow-color), 0 3px 12px rgba(0,0,0,0.15); }
+    .button.secondary { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); box-shadow: none; }
+    .button.secondary:hover { background: var(--primary-color); color: white; box-shadow: 0 0 15px var(--shadow-color); }
+    .button.script-dl { /* Specific style for script download button if needed */
+        background: var(--accent-color); /* Example: make it stand out */
     }
+    .button.script-dl:hover {
+        background: #e03570; /* Darker accent */
+    }
+    .button.utility { background-color: rgba(255,255,255,0.1); color: var(--text-muted-color); border: 1px solid rgba(255,255,255,0.2); box-shadow: none; }
+    .button.utility:hover { background-color: rgba(255,255,255,0.2); color: var(--text-color); }
+    .button.copied { background-color: var(--success-color) !important; color: white !important; border-color: var(--success-color) !important; }
 
-    header p {
-      font-size: 1.05em; 
-      color: var(--text-muted-color);
-      margin-bottom: 1.8em;
-      line-height: 1.6;
-    }
+    .cheat-image-container { margin-bottom: 2em; animation: fadeInImage 1.2s 0.3s ease-out forwards; opacity: 0; }
+    @keyframes fadeInImage { from { opacity: 0; transform: scale(0.9); } to   { opacity: 1; transform: scale(1); } }
+    .cheat-image { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 20px var(--shadow-color); border: 1px solid var(--card-border); }
 
-    .actions {
-      margin-bottom: 2em;
-      display: flex;
-      flex-wrap: wrap; /* Allow buttons to wrap */
-      gap: 0.8rem;
-      justify-content: center; /* Center buttons when wrapped */
-    }
-
-    .button {
-      padding: 0.8em 1.8em;
-      font-size: 1em; /* Slightly smaller base size */
-      font-weight: 600;
-      color: white;
-      background: var(--primary-color);
-      border: none;
-      border-radius: 50px; 
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 0 15px var(--shadow-color);
-      transition: all 0.25s ease-in-out;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-    }
-    .button:hover {
-      background: var(--primary-hover-color);
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 25px var(--shadow-color), 0 3px 12px rgba(0,0,0,0.15);
-    }
-    .button.secondary {
-      background: transparent;
-      border: 2px solid var(--primary-color);
-      color: var(--primary-color);
-      box-shadow: none;
-    }
-    .button.secondary:hover {
-      background: var(--primary-color);
-      color: white;
-      box-shadow: 0 0 15px var(--shadow-color);
-    }
-    .button.utility { /* For copy button etc. */
-        background-color: rgba(255,255,255,0.1);
-        color: var(--text-muted-color);
-        border: 1px solid rgba(255,255,255,0.2);
-        box-shadow: none;
-    }
-    .button.utility:hover {
-        background-color: rgba(255,255,255,0.2);
-        color: var(--text-color);
-    }
-    .button.copied {
-        background-color: var(--success-color) !important;
-        color: white !important;
-        border-color: var(--success-color) !important;
-    }
-
-
-    .cheat-image-container {
-      margin-bottom: 2em;
-      animation: fadeInImage 1.2s 0.3s ease-out forwards;
-      opacity: 0;
-    }
-    @keyframes fadeInImage {
-        from { opacity: 0; transform: scale(0.9); }
-        to   { opacity: 1; transform: scale(1); }
-    }
-    .cheat-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 20px var(--shadow-color);
-      border: 1px solid var(--card-border);
-    }
-
-    /* Modal (no major changes) */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 10, 20, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease-in-out; }
     .modal.show { display: flex; opacity: 1; }
     .modal-content { background: var(--card-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 2rem 2.5rem; border-radius: 15px; max-width: 650px; width: 90%; color: var(--text-color); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px var(--shadow-color); border: 1px solid var(--card-border); position: relative; transform: scale(0.95); transition: transform 0.3s ease-out; }
@@ -358,75 +215,19 @@
     .modal-content ol li i { color: var(--primary-color); margin-right: 0.7em; margin-top: 0.2em;  font-size: 0.9em; }
     .modal-content kbd { background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 0.2em 0.5em; border-radius: 4px; font-family: 'Consolas', 'Menlo', monospace; font-size: 0.9em; color: var(--text-color); }
 
-    .footer {
-      margin-top: 2.5em;
-      font-size: 0.85em;
-      color: var(--text-muted-color);
-      text-align: center;
-      z-index: 1; 
-      width: 100%;
-      animation: fadeInUpFooter 1s 0.6s ease-out forwards;
-      opacity: 0;
-      padding: 1em 0;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
+    .footer { margin-top: 2.5em; font-size: 0.85em; color: var(--text-muted-color); text-align: center; z-index: 1; width: 100%; animation: fadeInUpFooter 1s 0.6s ease-out forwards; opacity: 0; padding: 1em 0; border-top: 1px solid rgba(255,255,255,0.1); }
     @keyframes fadeInUpFooter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .footer p { margin-bottom: 0.5em; }
     .footer a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; }
     .footer a:hover { color: var(--primary-hover-color); text-decoration: underline; }
     .footer .social-links a { margin: 0 0.5em; font-size: 1.2em; }
 
-    #scrollToTopBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 999;
-        border: none;
-        outline: none;
-        background-color: var(--primary-color);
-        color: white;
-        cursor: pointer;
-        padding: 12px 15px;
-        border-radius: 50%;
-        font-size: 1.1em;
-        box-shadow: 0 4px 10px rgba(0,170,255,0.4);
-        transition: background-color 0.3s, transform 0.3s;
-    }
-    #scrollToTopBtn:hover {
-        background-color: var(--primary-hover-color);
-        transform: translateY(-3px);
-    }
+    #scrollToTopBtn { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 999; border: none; outline: none; background-color: var(--primary-color); color: white; cursor: pointer; padding: 12px 15px; border-radius: 50%; font-size: 1.1em; box-shadow: 0 4px 10px rgba(0,170,255,0.4); transition: background-color 0.3s, transform 0.3s; }
+    #scrollToTopBtn:hover { background-color: var(--primary-hover-color); transform: translateY(-3px); }
 
-
-    /* Responsive adjustments */
-    @media (max-width: 1099px) { /* Before full desktop layout */
-        .page-wrapper { flex-direction: column-reverse; } /* Ensure features are on top */
-        .main-content-area, .features-sidebar {
-            max-width: 700px; 
-            width: 95%; /* Use more width */
-            order: 0; 
-        }
-        .features-sidebar { position: static; margin-bottom: 1.5rem; }
-        header h1 { font-size: 2em; } 
-    }
-    @media (max-width: 768px) {
-      header h1 { font-size: 1.8em; } 
-      header p { font-size: 1em; }
-      .button { font-size: 0.95em; padding: 0.7em 1.5em;}
-      .modal-content { padding: 1.5rem 2rem; }
-      .features-sidebar h2 { font-size: 1.5em; }
-      .features-column li { font-size: 0.8em; }
-      .page-meta { flex-direction: column; gap: 0.5em; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      body { padding: 1.5rem 0.5rem; }
-      .main-content-area, .features-sidebar { padding: 1.2rem; width: 100%; }
-      header h1 { font-size: 1.6em; } 
-      .actions { flex-direction: column; gap: 0.6rem; }
-      .button { width: 100%; justify-content: center; }
-      .features-grid-container { grid-template-columns: 1fr; } /* Force single column for very small */
-    }
+    @media (max-width: 1099px) { .page-wrapper { flex-direction: column-reverse; } .main-content-area, .features-sidebar { max-width: 700px; width: 95%; order: 0; } .features-sidebar { position: static; margin-bottom: 1.5rem; } header h1 { font-size: 2em; }  }
+    @media (max-width: 768px) { header h1 { font-size: 1.8em; } header p { font-size: 1em; } .button { font-size: 0.95em; padding: 0.7em 1.5em;} .modal-content { padding: 1.5rem 2rem; } .features-sidebar h2 { font-size: 1.5em; } .features-column li { font-size: 0.8em; } .page-meta { flex-direction: column; gap: 0.5em; text-align: center; } }
+    @media (max-width: 480px) { body { padding: 1.5rem 0.5rem; } .main-content-area, .features-sidebar { padding: 1.2rem; width: 100%; } header h1 { font-size: 1.6em; } .actions { flex-direction: column; gap: 0.6rem; } .button { width: 100%; justify-content: center; } .features-grid-container { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -437,12 +238,8 @@
     <aside class="features-sidebar">
         <h2><i class="fas fa-star"></i> Pixelware Features <i class="fas fa-star"></i></h2>
         <div class="features-grid-container">
-            <ul class="features-column" id="features-col-1">
-              {/* <!-- First 6 features will be populated by JS --> */}
-            </ul>
-            <ul class="features-column" id="features-col-2">
-              {/* <!-- Remaining features will be populated by JS --> */}
-            </ul>
+            <ul class="features-column" id="features-col-1"></ul>
+            <ul class="features-column" id="features-col-2"></ul>
         </div>
     </aside>
 
@@ -452,9 +249,7 @@
           <span>Last Updated: <span id="lastUpdated"></span></span>
       </div>
       <header>
-        <h1>
-          <span class="wave-char">P</span><span class="wave-char">i</span><span class="wave-char">x</span><span class="wave-char">e</span><span class="wave-char">l</span><span class="wave-char">w</span><span class="wave-char">a</span><span class="wave-char">r</span><span class="wave-char">e</span><span class="wave-char space"> </span><span class="wave-char">2</span><span class="wave-char">.</span><span class="wave-char">0</span>
-        </h1>
+        <h1>Pixelware 2.0</h1>
         <p>
           Unleash the full potential in <a href="https://kour.io" target="_blank" rel="noopener noreferrer"><strong>Kour.io</strong></a> with this powerful userscript.<br />
           In-Game Menu with a vast array of game-changing features!
@@ -463,14 +258,17 @@
 
       <main>
         <div class="actions">
-          <a class="button" id="downloadButton" href="pixelware-cheat.user.js" download>
-            <i class="fas fa-download"></i> Download Cheat
+          <a class="button" id="getTampermonkeyButton" href="https://www.tampermonkey.net/" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-puzzle-piece"></i> 1. Get Tampermonkey
           </a>
+          <a class="button script-dl" id="installScriptButton" href="pixelware-cheat.user.js" download>
+            <i class="fas fa-file-code"></i> 2. Install Pixelware Script
+          </a>
+          <button class="button utility" id="copyLinkButton">
+            <i class="fas fa-copy"></i> Copy Script Link
+          </button>
           <button class="button secondary" id="infoButton">
             <i class="fas fa-info-circle"></i> Instructions
-          </button>
-          <button class="button utility" id="copyLinkButton">
-            <i class="fas fa-copy"></i> Copy DL Link
           </button>
         </div>
 
@@ -486,13 +284,16 @@
       <span class="close-btn" id="closeModalBtn">×</span>
       <h2><i class="fas fa-cogs"></i> How to Use</h2>
       <ol>
-        <li><i class="fas fa-puzzle-piece"></i> Install <a href="https://www.tampermonkey.net/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration:none;">Tampermonkey</a> (Chrome/Firefox/Edge).</li>
-        <li><i class="fas fa-mouse-pointer"></i> Click "Download Cheat" or copy the link.</li>
-        <li><i class="fas fa-check-circle"></i> Approve userscript installation in Tampermonkey.</li>
+        <li><i class="fas fa-puzzle-piece"></i> Click "1. Get Tampermonkey" & install the extension for your browser (Chrome/Firefox/Edge).</li>
+        <li><i class="fas fa-file-code"></i> Click "2. Install Pixelware Script".</li>
+        <li><i class="fas fa-check-circle"></i> Tampermonkey will open. Approve the userscript installation.</li>
         <li><i class="fas fa-gamepad"></i> Open <a href="https://kour.io" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration:none;"><strong>Kour.io</strong></a>.</li>
         <li><i class="fas fa-keyboard"></i> Press <kbd>Right Shift</kbd> for the cheat menu.</li>
         <li><i class="fas fa-rocket"></i> Customize and dominate!</li>
       </ol>
+      <p style="margin-top: 1em; font-size: 0.9em; color: var(--text-muted-color);">
+        Alternatively, after installing Tampermonkey, you can click "Copy Script Link" and manually add the script in Tampermonkey's dashboard ("Create a new script..." then paste).
+      </p>
     </div>
   </div>
 
@@ -502,14 +303,13 @@
       Made by Partypixelparty7. Page design by AI & Human.
     </p>
     <div class="social-links">
-        <a href="#" target="_blank" rel="noopener noreferrer" title="Discord Community (Placeholder)"><i class="fab fa-discord"></i></a>
-        <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank" rel="noopener noreferrer" title="GitHub Repository (Placeholder)"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" title="GitHub Profile"><i class="fab fa-github"></i></a>
+        <!-- ERSETZE YOUR_USERNAME mit deinem GitHub Benutzernamen -->
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // --- Feature List Population ---
     const allFeatures = [
         { icon: "fas fa-ghost", name: "Invisibility", desc: "Become completely unseen by other players." },
         { icon: "fas fa-bolt-lightning", name: "Instakill", desc: "Eliminate opponents instantly with a single hit." },
@@ -527,44 +327,17 @@
     function populateFeatures() {
         const col1 = document.getElementById('features-col-1');
         const col2 = document.getElementById('features-col-2');
-        col1.innerHTML = ''; // Clear existing
-        col2.innerHTML = '';
-
+        col1.innerHTML = ''; col2.innerHTML = '';
         allFeatures.forEach((feature, index) => {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <i class="${feature.icon}"></i>
-                <div>
-                    <span class="feature-name">${feature.name}</span>
-                    <span class="feature-description">${feature.desc}</span>
-                </div>
-            `;
-            if (index < 6) { // First 6 features in column 1
-                col1.appendChild(listItem);
-            } else {
-                col2.appendChild(listItem);
-            }
+            listItem.innerHTML = `<i class="${feature.icon}"></i><div><span class="feature-name">${feature.name}</span><span class="feature-description">${feature.desc}</span></div>`;
+            if (index < 6) { col1.appendChild(listItem); } else { col2.appendChild(listItem); }
         });
     }
     populateFeatures();
 
-    // --- Particles.js Configuration ---
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 50, "density": { "enable": true, "value_area": 900 } },
-        "color": { "value": "#00aaff" }, "shape": { "type": "circle" },
-        "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.7, "opacity_min": 0.1, "sync": false } },
-        "size": { "value": 2.2, "random": true },
-        "line_linked": { "enable": true, "distance": 140, "color": "#00aaff", "opacity": 0.25, "width": 1 },
-        "move": { "enable": true, "speed": 1.8, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-      },
-      "interactivity": {
-        "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-        "modes": { "grab": { "distance": 110, "line_linked": { "opacity": 0.7 } }, "push": { "particles_nb": 2 } }
-      }, "retina_detect": true
-    });
+    particlesJS("particles-js", { "particles": { "number": { "value": 50, "density": { "enable": true, "value_area": 900 } }, "color": { "value": "#00aaff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 0.7, "opacity_min": 0.1, "sync": false } }, "size": { "value": 2.2, "random": true }, "line_linked": { "enable": true, "distance": 140, "color": "#00aaff", "opacity": 0.25, "width": 1 }, "move": { "enable": true, "speed": 1.8, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 110, "line_linked": { "opacity": 0.7 } }, "push": { "particles_nb": 2 } } }, "retina_detect": true });
 
-    // --- Modal Logic ---
     const modal = document.getElementById('infoModal');
     const openModalBtn = document.getElementById('infoButton');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -573,41 +346,23 @@
     window.onclick = (event) => { if (event.target === modal) modal.classList.remove('show'); };
     document.addEventListener('keydown', (event) => { if (event.key === "Escape" && modal.classList.contains('show')) modal.classList.remove('show'); });
 
-    // --- Copy Download Link ---
     const copyLinkButton = document.getElementById('copyLinkButton');
-    const downloadButton = document.getElementById('downloadButton');
+    const installScriptButton = document.getElementById('installScriptButton');
     copyLinkButton.onclick = () => {
-        const downloadUrl = downloadButton.href;
-        navigator.clipboard.writeText(downloadUrl).then(() => {
+        const scriptUrl = installScriptButton.href;
+        navigator.clipboard.writeText(scriptUrl).then(() => {
             const originalText = copyLinkButton.innerHTML;
             copyLinkButton.innerHTML = '<i class="fas fa-check"></i> Copied!';
             copyLinkButton.classList.add('copied');
-            setTimeout(() => {
-                copyLinkButton.innerHTML = originalText;
-                copyLinkButton.classList.remove('copied');
-            }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-            alert('Failed to copy link. Please try manually.');
-        });
+            setTimeout(() => { copyLinkButton.innerHTML = originalText; copyLinkButton.classList.remove('copied'); }, 2000);
+        }).catch(err => { console.error('Failed to copy: ', err); alert('Failed to copy link.'); });
     };
 
-    // --- Last Updated Date ---
     document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    // --- Scroll to Top Button ---
     const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-    window.onscroll = function() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    };
-    scrollToTopBtn.onclick = function() {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    };
-
+    window.onscroll = function() { if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { scrollToTopBtn.style.display = "block"; } else { scrollToTopBtn.style.display = "none"; } };
+    scrollToTopBtn.onclick = function() { window.scrollTo({top: 0, behavior: 'smooth'}); };
   </script>
 </body>
 </html>
