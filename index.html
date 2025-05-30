@@ -1,173 +1,482 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pixelware 2.0 - Kour.io Cheat</title>
+  <title>Pixelware 2.0 - Dein Kour.io Advantage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
+    :root {
+      --primary-color: #00aaff;
+      --primary-hover-color: #008ecc;
+      --secondary-color: #08f;
+      --background-start: #0a192f;
+      --background-end: #132d4f;
+      --text-color: #e6f1ff;
+      --text-muted-color: #a8b2d1;
+      --card-bg: rgba(20, 40, 60, 0.7);
+      --card-border: rgba(0, 170, 255, 0.3);
+      --shadow-color: rgba(0, 170, 255, 0.5);
+    }
+
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-      color: #f0f8ff;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-start); /* Fallback */
+      color: var(--text-color);
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
       padding: 2rem;
-      animation: fadeIn 1s ease-in;
+      overflow-x: hidden;
+      position: relative; /* For particles.js */
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Behind content */
+      background-image: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
     }
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.2em;
-      text-shadow: 0 0 10px #3bcaff;
-    }
-
-    p {
-      font-size: 1.2em;
-      color: #cceeff;
-      max-width: 700px;
+    .container {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px var(--shadow-color);
       text-align: center;
-      line-height: 1.6;
+      max-width: 800px;
+      width: 90%;
+      animation: fadeInScaleUp 0.8s ease-out forwards;
+      z-index: 1; /* Above particles */
+    }
+
+    @keyframes fadeInScaleUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    header h1 {
+      font-size: 3.2em;
+      font-weight: 700;
+      margin-bottom: 0.3em;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px var(--shadow-color);
+      animation: textGlow 2s infinite alternate;
+    }
+
+    @keyframes textGlow {
+        from { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); }
+        to { text-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color); }
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: var(--text-muted-color);
+      margin-bottom: 2em;
+      line-height: 1.7;
+    }
+
+    .actions {
+      margin-bottom: 2.5em;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
     }
 
     .button {
-      margin-top: 2em;
-      padding: 1em 2.5em;
-      font-size: 1.2em;
-      font-weight: bold;
+      padding: 0.9em 2.2em;
+      font-size: 1.1em;
+      font-weight: 600;
       color: white;
-      background: #00aaff;
+      background: var(--primary-color);
       border: none;
-      border-radius: 10px;
+      border-radius: 50px; /* Pill shape */
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+      box-shadow: 0 0 20px var(--shadow-color);
       transition: all 0.3s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
     }
 
     .button:hover {
-      background: #008ecc;
-      transform: scale(1.05);
+      background: var(--primary-hover-color);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 30px var(--shadow-color), 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    .info-button {
-      background: none;
-      border: 2px solid #00aaff;
-      color: #cceeff;
-      padding: 0.5em 1em;
-      margin-top: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
+    .button.secondary {
+      background: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      box-shadow: none;
     }
 
-    .info-button:hover {
-      border-color: #ffffff;
-      color: #ffffff;
+    .button.secondary:hover {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 0 20px var(--shadow-color);
     }
 
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 20, 0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
+    .cheat-image-container {
+      margin-bottom: 2.5em;
+      animation: fadeInImage 1.2s 0.3s ease-out forwards;
+      opacity: 0;
     }
-
-    .modal-content {
-      background-color: #102331;
-      padding: 2rem;
-      border-radius: 15px;
-      max-width: 600px;
-      color: #dff6ff;
-      animation: slideIn 0.5s ease-out;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .modal-content h2 {
-      color: #00ccff;
-    }
-
-    .close-btn {
-      float: right;
-      font-size: 1.5em;
-      color: #ccc;
-      cursor: pointer;
+    
+    @keyframes fadeInImage {
+        from { opacity: 0; transform: scale(0.9); }
+        to   { opacity: 1; transform: scale(1); }
     }
 
     .cheat-image {
-      margin-top: 2em;
       max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 25px var(--shadow-color);
+      border: 2px solid var(--card-border);
+    }
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 10, 20, 0.8);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 2.5rem;
+      border-radius: 15px;
+      max-width: 650px;
+      width: 90%;
+      color: var(--text-color);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px var(--shadow-color);
+      border: 1px solid var(--card-border);
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease-out;
+    }
+    
+    .modal.show .modal-content {
+        transform: scale(1);
+    }
+
+    .modal-content h2 {
+      color: var(--primary-color);
+      margin-bottom: 1em;
+      text-align: left;
+      font-size: 1.8em;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2em;
+      color: var(--text-muted-color);
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: var(--primary-color);
+      transform: rotate(90deg);
+    }
+
+    .modal-content ol {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+    }
+
+    .modal-content ol li {
+      margin-bottom: 0.8em;
+      font-size: 1.05em;
+      line-height: 1.6;
+      color: var(--text-muted-color);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .modal-content ol li i {
+        color: var(--primary-color);
+        margin-right: 0.7em;
+        margin-top: 0.2em; /* Align with text */
+        font-size: 0.9em;
+    }
+
+    .modal-content kbd {
+      background-color: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Menlo', monospace;
+      font-size: 0.9em;
+      color: var(--text-color);
     }
 
     .footer {
       margin-top: 3em;
-      font-size: 0.8em;
-      color: #88aacc;
+      font-size: 0.9em;
+      color: var(--text-muted-color);
+      text-align: center;
+      z-index: 1;
+      animation: fadeInUpFooter 1s 0.6s ease-out forwards;
+      opacity: 0;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      p { font-size: 1em; }
+    @keyframes fadeInUpFooter {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .footer a:hover {
+        color: var(--primary-hover-color);
+        text-decoration: underline;
+    }
+
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5em; }
+      header p { font-size: 1em; }
+      .button { font-size: 1em; padding: 0.8em 1.8em;}
+      .modal-content { padding: 2rem; }
+      .modal-content h2 { font-size: 1.6em; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 1.5rem; }
+      header h1 { font-size: 2em; }
+      .actions { flex-direction: column; gap: 0.8rem; }
+      .button { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
 
-  <h1>Pixelware 2.0 Cheat</h1>
-  <p>
-    Unlock advanced features in <strong>Kour.io</strong> using this powerful userscript.<br />
-    Includes an in-game cheat menu and more.
-  </p>
+  <div class="container">
+    <header>
+      <h1>Pixelware 2.0</h1>
+      <p>
+        Entfessle das volle Potenzial in <strong>Kour.io</strong> mit diesem mächtigen Userscript.<br />
+        Inklusive In-Game Cheat-Menü, Aimbot, ESP und vielen weiteren Features!
+      </p>
+    </header>
 
-  <a class="button" href="pixelware-cheat.user.js">Download Kour.io Cheat</a>
-  <button class="info-button" onclick="document.getElementById('modal').style.display='flex'">Instructions & Info</button>
+    <main>
+      <div class="actions">
+        <a class="button" id="downloadButton" href="pixelware-cheat.user.js">
+          <i class="fas fa-download"></i> Kour.io Cheat herunterladen
+        </a>
+        <button class="button secondary" id="infoButton">
+          <i class="fas fa-info-circle"></i> Anleitung & Infos
+        </button>
+      </div>
 
-  <img src="https://i.imgur.com/4pxp2tx.png" alt="Cheat Menu Preview" class="cheat-image" />
+      <div class="cheat-image-container">
+        <img src="https://i.imgur.com/4pxp2tx.png" alt="Cheat Menu Vorschau" class="cheat-image" />
+      </div>
+    </main>
+  </div>
 
-  <div class="modal" id="modal">
+  <div class="modal" id="infoModal">
     <div class="modal-content">
-      <span class="close-btn" onclick="document.getElementById('modal').style.display='none'">&times;</span>
-      <h2>How to Use</h2>
+      <span class="close-btn" id="closeModalBtn">×</span>
+      <h2><i class="fas fa-cogs"></i> So funktioniert's</h2>
       <ol>
-        <li>Install the Tampermonkey browser extension (Chrome/Firefox)</li>
-        <li>Click the blue "Download Kour.io Cheat" button</li>
-        <li>Approve the userscript installation in Tampermonkey</li>
-        <li>Open <strong>Kour.io</strong> in your browser</li>
-        <li>Press <kbd>Right Shift</kbd> to open the cheat menu</li>
-        <li>Customize and dominate the game!</li>
+        <li><i class="fas fa-puzzle-piece"></i> Installiere die Browser-Erweiterung <a href="https://www.tampermonkey.net/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration:none;">Tampermonkey</a> (Chrome/Firefox/Edge).</li>
+        <li><i class="fas fa-mouse-pointer"></i> Klicke auf den "Kour.io Cheat herunterladen" Button.</li>
+        <li><i class="fas fa-check-circle"></i> Bestätige die Installation des Userscripts in Tampermonkey.</li>
+        <li><i class="fas fa-gamepad"></i> Öffne <strong>Kour.io</strong> in deinem Browser.</li>
+        <li><i class="fas fa-keyboard"></i> Drücke <kbd>Rechte Shift-Taste</kbd> um das Cheat-Menü zu öffnen.</li>
+        <li><i class="fas fa-rocket"></i> Passe die Einstellungen an und dominiere das Spiel!</li>
       </ol>
     </div>
   </div>
 
-  <div class="footer">
-    ⚠️ For educational use only. Not affiliated with Kour.io. Use at your own risk.
-  </div>
+  <footer class="footer">
+    <p>
+      ⚠️ Nur für Bildungszwecke. Nicht mit Kour.io verbunden. Benutzung auf eigene Gefahr.<br>
+      Inspiriert und verbessert von der Community. Design von AI & Mensch.
+    </p>
+  </footer>
 
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Modal close logic
-    window.onclick = function(e) {
-      const modal = document.getElementById('modal');
-      if (e.target === modal) {
-        modal.style.display = "none";
+    // Particles.js Configuration
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80, // Reduced for performance, increase if desired
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#00aaff" // Primary color for particles
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.6,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00aaff", // Primary color for lines
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3, // Slightly slower for a smoother feel
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab" // Changed from "repulse" to "grab" for a subtle effect
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 100, // Reduced distance
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Modal Logic
+    const modal = document.getElementById('infoModal');
+    const openModalBtn = document.getElementById('infoButton');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    openModalBtn.onclick = function() {
+      modal.classList.add('show');
+    }
+
+    closeModalBtn.onclick = function() {
+      modal.classList.remove('show');
+    }
+
+    // Close modal if clicked outside of modal-content
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.classList.remove('show');
       }
     }
-  </script>
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape" && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+        }
+    });
 
+  </script>
 </body>
 </html>
